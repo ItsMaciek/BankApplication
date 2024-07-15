@@ -4,11 +4,9 @@
       <form @submit.prevent="register">
         <h2>Register</h2>
         <div>
-          <!-- <label for="username">Username:</label> -->
           <input type="text" v-model="username" required placeholder="Username"/>
         </div>
         <div>
-          <!-- <label for="password">Password:</label> -->
           <input type="password" v-model="password" required placeholder="Password"/>
         </div>
         <div>
@@ -80,7 +78,7 @@ h2{
           localStorage.setItem('token', res.data.token);
           this.$router.push('/account');
         } catch (err) {
-          console.error(err.response.data); // Sprawdź odpowiedź błędu
+          console.error(err.response.data);
         }
       },
     },

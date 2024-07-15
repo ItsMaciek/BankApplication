@@ -132,7 +132,6 @@ export default {
           console.error(error);
         }
         this.account = response.data;
-        //this.addItem("img_selected",this.transactionrecever,this.transactiontype,this.transactionprice);
         this.SendMenuActive = false;
       } catch (error) {
         console.error(error);
@@ -150,7 +149,6 @@ export default {
           console.error(error);
         }
         this.account = response.data;
-        //this.addItem("img_selected",this.transactionrecever,this.transactiontype,this.transactionprice);
         this.SaveMenuActive = false;
       } catch (error) {
         console.error(error);
@@ -172,7 +170,6 @@ export default {
       }
     },
     addItem(img_selected,name,type,value) {
-      //if (this.userInput.trim() !== '') {)
       let date = new Date();
       let year = date.getFullYear();
       let month = String(date.getMonth() + 1).padStart(2, '0');

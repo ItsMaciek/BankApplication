@@ -20,7 +20,7 @@ router.post('/register', async (req, res) => {
     await user.save();
 
     const payload = { user: { id: user.id } };
-    const token = jwt.sign(payload, 'your_jwt_secret', { expiresIn: 3600 });
+    const token = jwt.sign(payload, 'OMGDZIALA', { expiresIn: 3600 });
 
     res.status(201).json({ token });
   } catch (err) {
@@ -43,8 +43,7 @@ router.post('/login', async (req, res) => {
     }
 
     const payload = { user: { id: user.id } };
-    const token = jwt.sign(payload, 'your_jwt_secret', { expiresIn: 3600 });
-    // console.log(jwt.verify(payload, 'your_jwt_secret').foo)
+    const token = jwt.sign(payload, 'OMGDZIALA', { expiresIn: 3600 });
     res.status(200).json({ token });
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -164,12 +163,3 @@ async function addItem(user,img_selected,name,type,value) {
   }
 
 module.exports = router;
-// {
-//   "img_selected": "img_selected",
-//   "id": 7665,
-//   "name": "jojosz",
-//   "date": "2024-07-15",
-//   "type": null,
-//   "completed": true,
-//   "value": 1234
-// }
