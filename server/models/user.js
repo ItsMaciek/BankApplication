@@ -13,7 +13,22 @@ const UserSchema = new mongoose.Schema({
   balance: {
     type: Number,
     required: true,
+    default: 1000,
+  },
+  saving: {
+    type: Number,
+    required: true,
     default: 0,
+  },
+  limit: {
+    type: Number,
+    required: true,
+    default: 2000,
+  },
+  history: {
+    type: Array,
+    required: true,
+    default: [],
   },
   createdAt: {
     type: Date,

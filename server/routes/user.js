@@ -92,12 +92,17 @@ router.put('/:id/balance', async (req, res) => {
         return res.status(400).json({ error: 'Insufficient funds' });
       }
       account.balance -= amount;
+      account.limit += amount;
       transactionrecever.balance += amount;
+
+      addItem(account,'yo',transactionrecever.username,type,-amount);
+      addItem(transactionrecever,'yo',account.username,type,amount);
+
     } else {
       return res.status(400).json({ error: 'Invalid transaction type' });
     }
 
-    console.log(transactionrecever.balance)
+    //console.log(transactionrecever.balance)
     await account.save();
     await transactionrecever.save();
     res.status(200).json(account);
@@ -105,4 +110,66 @@ router.put('/:id/balance', async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+
+//Aktualizuje zawartosc saving 
+router.put('/:id/saving', async (req, res) => {
+  const { amount, type } = req.body; // amount to wartość, a type to typ operacji: 'deposit' lub 'withdraw'
+  try {
+    const account = await User.findOne({ username:  req.params.id });
+    if (!account) {
+      return res.status(404).json({ error: 'Account not found' });
+    }
+    if (type === 'deposit') {
+      if (account.balance < amount) {
+        return res.status(400).json({ error: 'Insufficient funds' });
+      }
+      account.saving += amount;
+      account.balance -= amount;
+    } else if (type === 'withdraw') {
+      if (account.saving < amount) {
+        return res.status(400).json({ error: 'Insufficient funds' });
+      }
+      account.saving -= amount;
+      account.balance += amount;
+    } else {
+      return res.status(400).json({ error: 'Invalid transaction type' });
+    }
+    addItem(account,'yo','saving',type,amount);
+    await account.save();
+    res.status(200).json(account);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+async function addItem(user,img_selected,name,type,value) {
+    let date = new Date();
+    let year = date.getFullYear();
+    let month = String(date.getMonth() + 1).padStart(2, '0');
+    let day = String(date.getDate()).padStart(2, '0');
+      const newItem = {
+        img_selected: img_selected,
+        id: Math.round(Math.random()*10000),
+        name: name,
+        date: `${year}-${month}-${day}`,
+        type: type,
+        completed: true,
+        value: value,
+      };
+      user.history.push(newItem);
+      //console.log(newItem);
+      if (user.history.length >= 5) {
+        var theRemovedElement = user.history.shift();
+      }
+  }
+
 module.exports = router;
+// {
+//   "img_selected": "img_selected",
+//   "id": 7665,
+//   "name": "jojosz",
+//   "date": "2024-07-15",
+//   "type": null,
+//   "completed": true,
+//   "value": 1234
+// }

@@ -17,8 +17,8 @@ html, body {
     'Droid Sans',
     'Helvetica Neue',
     sans-serif;
-
     color: white;
+
 }
 /* div{
     text-align: center;
@@ -31,14 +31,15 @@ html, body {
     flex-direction: column;
 }
 #top{
-    width: calc(100% - 15px);
-    height: calc(100% - 10px);
+    width: 100%;
+    height: 100%;
     border-radius: 15px;
     text-align: left;
     display: flex;
     align-items: end;
     font-size: 50px;
-    padding: 10px;
+    padding: 10px 0px 10px 0px;
+    justify-content: center;
     color: black;
 }
 #card{
@@ -53,7 +54,7 @@ html, body {
     flex-direction: column;
 }
 #name{
-    width: calc(100% - 15px);
+    width: 100%;
     height: 100%;
     align-items: center;
     color: rgb(51, 51, 51);
@@ -69,6 +70,7 @@ html, body {
     height: 100%;
     display: flex;
     flex-direction: row;
+    gap: 10px;
 }
 #bottom_sel{
     border-radius: 15px;
@@ -76,7 +78,7 @@ html, body {
     height: 100%;
     display: flex;
     flex-direction: column;
-    padding: 10px;
+    /* padding: 10px; */
 }
 #a{
     border-radius: 15px;
@@ -92,6 +94,12 @@ html, body {
     height: calc(100% - 10px);
     border-radius: 15px;
     border: 0;
+}
+.thing:hover{
+    transform: translateY(-2px);
+}
+.thing:active{
+    transform: translateY(1px);
 }
 #table{
     border-radius: 15px;
@@ -119,9 +127,14 @@ html, body {
     grid-template-rows: repeat(1, 1fr);
     overflow-y: auto;
 }
-
+th{
+    height: 5%;
+}
+td{
+    text-align: center;
+}
 #goal{
-    background: linear-gradient(90deg, rgb(25, 50, 25) 0%, rgba(25, 50, 25) 26%, rgba(51, 51, 51,1) 26%, rgba(51, 51, 51,1) 100%);
+    /* background: linear-gradient(90deg, rgb(25, 50, 25) 0%, rgba(25, 50, 25) 26%, rgba(51, 51, 51,1) 26%, rgba(51, 51, 51,1) 100%); */
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -132,8 +145,9 @@ html, body {
     justify-content: space-between;
     text-align: left !important;
     padding: 15px;
+    width: calc(100% - 30px);
 }
-#SendMenu{
+.Menu{
     position: absolute;
     left: 25%;
     top: 25%;
@@ -151,7 +165,7 @@ html, body {
     display: flex;
     justify-content: center;
 }
-#SendMenu form{
+.Menu form{
     display: flex;
     width: 50%;
     gap: 15px;
@@ -178,6 +192,22 @@ input {
 }
   
 input:focus {
+    background-color: white;
+    transform: scale(1.05);
+    box-shadow: 13px 13px 100px #969696,
+               -13px -13px 100px #ffffff;
+}
+select {
+    border: none;
+    outline: none;
+    border-radius: 15px;
+    padding: 1em;
+    background-color: #ccc;
+    box-shadow: inset 2px 5px 10px rgba(0,0,0,0.3);
+    transition: 300ms ease-in-out;
+}
+  
+select:focus {
     background-color: white;
     transform: scale(1.05);
     box-shadow: 13px 13px 100px #969696,
@@ -211,6 +241,8 @@ input:focus {
     transform: translateY(-1px);
 }
 
+
+
 #LoginMenu{
     text-align: center;
 
@@ -232,4 +264,55 @@ input:focus {
     gap: 15px;
     flex-direction: column;
     justify-content: center;
+}
+.popupOn{
+    animation-name: show;
+    animation-duration: 0.5s;
+    
+}
+@keyframes show {
+    0%   {transform: scale(0.0); visibility: visible;}
+    50% {transform: scale(1.05);}
+    100% {transform: scale(1);}
+}
+.popupOff{
+    animation-name: close;
+    animation-duration: 0.5s;
+    
+}
+@keyframes close {
+    0%   {transform: scale(1); }
+    100% {transform: scale(0);visibility: visible;}
+}
+
+
+@media screen and (max-width: 600px) {
+
+    #bottom{
+        flex-direction: column;
+    }
+    html, body {
+        overflow-y: auto;
+    }
+    h1{
+        font-size: 100%;
+    }
+
+    #app{
+        width: 100% ;
+        height: 100%;
+        justify-content: center;
+    }
+    #top{
+        width: 100% ;
+        height: 100%;
+        padding: 100px 0px 10px 0px;
+    }
+    th,td{
+        font-size: 10px;
+    }
+    #tablepad img{
+        max-width: 32px;
+        max-height: 32px;
+    }
 }

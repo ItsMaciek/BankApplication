@@ -4,12 +4,15 @@
       <form @submit.prevent="register">
         <h2>Register</h2>
         <div>
-          <label for="username">Username:</label>
-          <input type="text" v-model="username" required />
+          <!-- <label for="username">Username:</label> -->
+          <input type="text" v-model="username" required placeholder="Username"/>
         </div>
         <div>
-          <label for="password">Password:</label>
-          <input type="password" v-model="password" required />
+          <!-- <label for="password">Password:</label> -->
+          <input type="password" v-model="password" required placeholder="Password"/>
+        </div>
+        <div>
+          <input type="password" v-model="confirmpassword" required placeholder="Confirm Password"/>
         </div>
         <button class="fancy" type="submit">Register</button>
         <router-link to="/login">Login</router-link>
@@ -59,19 +62,21 @@ h2{
       return {
         username: '',
         password: '',
+        confirmpassword: '',
       };
     },
     methods: {
       async register() {
         try {
+          if (this.password != this.confirmpassword) {
+            alert("Passwords Don't Match");
+            return;
+          }
           const res = await axios.post('/users/register', {
             username: this.username,
             password: this.password,
           });
-          // const res2 = await axios.post('/account/create', {
-          //   owner: this.username,
-          //   balance: 0,
-          // });
+
           localStorage.setItem('token', res.data.token);
           this.$router.push('/account');
         } catch (err) {

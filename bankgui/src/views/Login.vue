@@ -4,12 +4,12 @@
       <form @submit.prevent="login" >
         <h2>Login</h2>
         <div>
-          <label for="username">Username:</label>
-          <input type="text" v-model="username" required />
+          <!-- <label for="username">Username:</label> -->
+          <input type="text" v-model="username" required placeholder="Username"/>
         </div>
         <div>
-          <label for="password">Password:</label>
-          <input type="password" v-model="password" required />
+          <!-- <label for="password">Password:</label> -->
+          <input type="password" v-model="password" required placeholder="Password"/>
         </div>
         <button class="fancy" type="submit">Login</button>
         <router-link to="/register">Register</router-link>
