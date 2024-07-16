@@ -14,7 +14,11 @@ Banking App is a banking application built using Node.js, Express, MongoDB, and 
 9. [Examples](#examples)
 
 ## Screenshots
+![Login](img/login.png)
 
+![Register](img/register.png)
+
+![Account](img/account.png)
    
 ## Tech Stack
 
